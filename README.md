@@ -2,7 +2,7 @@
 
 Nunc Age is a macOS menu-bar TODO list and dashboard. You tick items in the app; your AI agent (Grok Bot, Cursor, Claude Code, Codex, or another) keeps the lists in a folder of plain CSV and Markdown files.
 
-The menu shows the first few open items from each agent's list, in the order the agent wrote them, so the agent decides what comes first. Three per list by default; Settings can change that. When you tick one, the next open item from the same list takes its place. The dashboard shows every open item, plus items completed this week (or longer, if Settings says so).
+The menu is a regular macOS menu that grows with its contents. Each agent is a header, then each section, with icons when the agent provided them. The menu shows the first few open items of each section, in the order the agent wrote them (5 per section by default; Settings can show 3, 10, or all). When you tick one, the next open item from that section takes its place, and the menu stays open. The dashboard shows every open item in source and section cards, plus items completed this week (or longer, if Settings says so).
 
 This public repository is for [issues](https://github.com/diligiteiust/NuncAge-App/issues), documentation, and the agent skills. The app source is private.
 
@@ -31,7 +31,7 @@ That installs the skills for your user account, in every supported agent the ins
 
 ## File format
 
-The contract the app reads is [skills/nunc-age/references/FORMAT.md](skills/nunc-age/references/FORMAT.md). The default data folder is `~/NuncAge`.
+The contract the app reads is [skills/nunc-age/references/FORMAT.md](skills/nunc-age/references/FORMAT.md). The default data folder is `~/NuncAge`. Lists live in `todos/`, optional section icons and colors in `sections/`, pictures in `icons/`, and a short Markdown note in `dashboard/`. From Nunc Age 1.4, a to-do, a section, or a source can have an icon: a file under `icons/` or an `sf:` SF Symbol.
 
 ## Support
 
