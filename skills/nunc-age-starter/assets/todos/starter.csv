@@ -1,0 +1,9 @@
+id,title,section,due,priority,status,done_at,note,link
+t1,Review today's calendar,Today,TODAY,1,open,,,
+t2,Clear the inbox down to what still needs a reply,Today,TODAY,1,open,,,
+w1,Finish the most urgent work item,Work,TODAY,1,open,,Replace this with the thing that actually matters today,
+w2,Send any waiting replies,Work,TOMORROW,2,open,,,
+w3,Weekly review,Work,NEXT_MONDAY,2,open,,Look over the open lists and drop anything stale,
+p1,Do one personal errand you have been putting off,Personal,IN_3_DAYS,2,open,,,
+h1,A small home task you can finish today,Home,TODAY,3,open,,,
+v1,Waiting on a reply before you can continue,Waiting,,3,open,,Put the person's name or the date you last asked in the note,
