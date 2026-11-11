@@ -9,4 +9,4 @@ Tick a box in the menu or on this dashboard when you finish something. The app r
 - **Today** — things that should happen today
 - **Work** and **Personal** — ordinary open work
 - **Home** — household tasks
-- **Waiting** — blocked on someone else, so they stay off the top of the menu unless you give them a due date
+- **Waiting** — blocked on someone else. These rows stay below today's work, because the menu shows the first open rows in the file

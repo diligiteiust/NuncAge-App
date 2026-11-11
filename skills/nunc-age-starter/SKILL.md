@@ -34,11 +34,11 @@ Use source id `starter` and display name `Starter` unless the user picks another
    - `IN_3_DAYS` — today plus 3 calendar days
    - `NEXT_MONDAY` — the next Monday (if today is Monday, use the following Monday)
 
-   Keep the ids, sections, and priorities. You may drop or rewrite a row if it does not fit the user, but keep at least one item in Today, Work, Personal, Home, and Waiting so the dashboard shows how grouping works.
+   Keep the ids, sections, and priorities. Put today, overdue, and urgent rows first. The menu shows the first open rows in that file order, and the app does not sort them. Rewrite the file when the order changes. You may drop or rewrite a row if it does not fit the user, but keep at least one item in Today, Work, Personal, Home, and Waiting so the dashboard shows how grouping works.
 
 3. Write `dashboard/starter.md` from [assets/dashboard/starter.md](assets/dashboard/starter.md). You may shorten it, but keep the short "how this works" note so a first-time user knows that ticking an item notifies the agent.
 
-4. Tell the user to open Nunc Age, confirm Settings points at this folder, and look at the menu and the dashboard. Mention that these are examples they can edit or delete, and that their own agent should use a different `source` id for real lists (for example `planner`).
+4. Tell the user to open Nunc Age, confirm Settings points at this folder, and look at the menu and the dashboard. Mention that these are examples they can edit or delete, and that your AI agent should use a different `source` id for real lists (for example `planner`).
 
 ## Do not
 

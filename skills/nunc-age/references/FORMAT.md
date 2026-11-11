@@ -67,7 +67,7 @@ Ticks are ordered by `at`. If two ticks have the same time, the later line in `t
 
 An `undone` tick is newer than the file when its time is greater than or equal to `done_at`. If the file says `done` but `done_at` is missing, an `undone` tick wins. If the agent rewrites the file as `done` with a `done_at` later than the untick, the file wins again.
 
-Write `done_at` whenever you set `status` to `done`. A done item with no timestamp is hidden from the quick list (it still appears on the dashboard).
+Write `done_at` whenever you set `status` to `done`. The menu does not list completed items. The dashboard shows a completed item when it falls in the range chosen in Settings (this week by default). A completed item with no timestamp is shown only when that range is always.
 
 ## ticks.csv
 
@@ -116,16 +116,10 @@ Fenced code is shown as plain text. List items are one line each. Inline Markdow
 
 ## What the user sees
 
-The menu-bar quick list orders open items as:
+Row order is priority order. Put the most important items first: today, overdue, and urgent at the top. When the order should change, rewrite the file. The app does not sort the menu by due date or priority.
 
-1. Overdue (`due` before today)
-2. Due today
-3. Due in the next 1, 2, or 3 calendar days
-4. Undated priority `1`
-5. Everything else, by priority (`1`, then `2`, then `3`) and then file order
+The menu shows the first N open rows of each `todos/<source>.csv`, in that file's row order, under the source's name from `sources.csv`. N is a Settings value and starts at 3. Ticking an item takes it off the menu, and the next open row from that file takes its place. The menu-bar count is the number of open items that are overdue or due today.
 
-Within the first three groups, earlier due dates come first, then priority, then file order. File order is the row in that source's CSV. Sources follow `sources.csv`, then any other source name alphabetically.
+The dashboard shows every open item from every source, and completed items for the chosen range. Due dates and priority stay on those rows. Items are grouped by `section` in file order. The default range is the current Monday–Sunday week, local time. Settings can keep completed items for the last 7 days, for 30 days, or always.
 
-Done items are grey and sit at the bottom. They are shown only when they were done in the current Monday–Sunday week, local time, and hidden after that week ends. The menu-bar count is the number of open items that are overdue or due today.
-
-The dashboard does not hide older done items.
+Sources follow `sources.csv`, then any other source name alphabetically.
