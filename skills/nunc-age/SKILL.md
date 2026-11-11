@@ -52,6 +52,8 @@ id,title,section,due,priority,status,done_at,note,link
 - `note` is an optional second line under the title.
 - `link` is an optional `http` or `https` URL.
 
+Row order is priority order. Put the most important items first: today, overdue, and urgent at the top. The menu shows the first open rows of this file (the user chooses how many; the default is 3). The dashboard shows every open item, and completed items for as long as the user keeps them (this week by default). When the order should change, rewrite the file. Do not rely on the app to sort by due date or priority.
+
 Quote a field that contains a comma, a quote, or a newline. A quote inside a quoted field is `""`.
 
 `dashboard/<source>.md` is optional Markdown shown above your to-dos. Headings, paragraphs, lists, tables, and inline links work. Keep it short.
@@ -77,6 +79,10 @@ You do not read `ticks.csv` to discover ticks. That file stays on the Mac and is
 ## 5. Git
 
 If the folder is a git checkout, the app can run `git pull --ff-only` on its own. `ticks.csv` and `.nuncage/` must not be committed; the app adds them to `.git/info/exclude`. When you commit and push list changes, leave those paths untracked.
+
+## Using Grok Bot
+
+Grok Bot is a hosted assistant. It runs on its own cloud computer, not on the user's Mac. It installs `nunc-age` and `nunc-age-starter` from GitHub, then writes the same files in the user's data folder through the user's approved access to that Mac. Follow every rule in this skill: one source, rewrite your own files, never write `ticks.csv` or `.nuncage/`, and do not log a `notify_url`.
 
 ## What not to do
 
