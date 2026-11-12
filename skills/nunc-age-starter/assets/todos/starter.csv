@@ -7,4 +7,4 @@ w3,Weekly review,Work,NEXT_MONDAY,2,open,,Look over the open lists and drop anyt
 p1,Do one personal errand you have been putting off,Personal,IN_3_DAYS,2,open,,,,sf:calendar,,
 h1,A small home task you can finish today,Home,TODAY,3,open,,,,sf:house.fill,,
 v1,Waiting on a reply before you can continue,Waiting,,3,open,,Put the person's name or the date you last asked in the note,,sf:hourglass,,
-q1,Which day should we meet?,Waiting,TODAY,2,open,,Pick one, or type another day,,sf:questionmark.circle,Monday|Tuesday|Wednesday,true
+q1,Which day should we meet?,Waiting,TODAY,2,open,,"Pick one, or type another day",,sf:questionmark.circle,Monday|Tuesday|Wednesday,true
