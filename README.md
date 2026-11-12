@@ -31,7 +31,7 @@ That installs the skills for your user account, in every supported agent the ins
 
 ## File format
 
-The contract the app reads is [skills/nunc-age/references/FORMAT.md](skills/nunc-age/references/FORMAT.md). The default data folder is `~/NuncAge`. Lists live in `todos/`, optional section icons and colors in `sections/`, pictures in `icons/`, and a short Markdown note in `dashboard/`. From Nunc Age 1.4, a to-do, a section, or a source can have an icon: a file under `icons/` or an `sf:` SF Symbol.
+The contract the app reads is [skills/nunc-age/references/FORMAT.md](skills/nunc-age/references/FORMAT.md). The default data folder is `~/NuncAge`. Lists live in `todos/`, optional section icons and colors in `sections/`, pictures in `icons/`, and a short Markdown note in `dashboard/`. From Nunc Age 1.4, a to-do, a section, or a source can have an icon: a file under `icons/` or an `sf:` SF Symbol. From Nunc Age 1.8, a dashboard note can lay a few facts side by side in a `::: cards` row: each `###` heading is a card, with an optional `{icon}`.
 
 ## Support
 
