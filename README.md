@@ -17,7 +17,7 @@ This public repository is for [issues](https://github.com/diligiteiust/NuncAge-A
 There are two skills:
 
 - **nunc-age** — how an agent talks to the app (the folder, the CSV and Markdown files, and tick notifications)
-- **nunc-age-starter** — a sample dashboard and a few common lists, so the app is not empty on first launch
+- **nunc-age-starter** — a sample dashboard and a few common lists. From Nunc Age 2.6, the app writes these into an empty folder on first launch
 
 ### From the app
 
@@ -37,7 +37,7 @@ That installs the skills for your user account, in every supported agent the ins
 
 ## File format
 
-The contract the app reads is [skills/nunc-age/references/FORMAT.md](skills/nunc-age/references/FORMAT.md). The default data folder is `~/NuncAge`. Lists live in `todos/`, optional section icons and colors in `sections/`, pictures in `icons/`, and a short Markdown note in `dashboard/`. From Nunc Age 1.4, a to-do, a section, or a source can have an icon: a file under `icons/` or an `sf:` SF Symbol. From Nunc Age 1.8, a dashboard note can lay a few facts side by side in a `::: cards` row: each `###` heading is a card, with an optional `{icon}`. From Nunc Age 2.5, a to-do row can have `options` and `allow_other` so the user can answer a question; the answer is final, and is sent on the notify POST and stored on `ticks.csv`.
+The contract the app reads is [skills/nunc-age/references/FORMAT.md](skills/nunc-age/references/FORMAT.md). The default data folder is `~/NuncAge`. Lists live in `todos/`, optional section icons and colors in `sections/`, pictures in `icons/`, and a short Markdown note in `dashboard/`. From Nunc Age 1.4, a to-do, a section, or a source can have an icon: a file under `icons/` or an `sf:` SF Symbol. From Nunc Age 1.8, a dashboard note can lay a few facts side by side in a `::: cards` row: each `###` heading is a card, with an optional `{icon}`. From Nunc Age 2.5, a to-do row can have `options` and `allow_other` so the user can answer a question; the answer is final, and is sent on the notify POST and stored on `ticks.csv`. From Nunc Age 2.6, an empty data folder gets the starter sample lists on first launch, including one question item. Existing files are left alone, and the samples are written only once.
 
 ## Support
 
