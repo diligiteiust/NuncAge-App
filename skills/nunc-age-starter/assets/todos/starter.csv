@@ -1,9 +1,10 @@
-id,title,section,due,priority,status,done_at,note,link,icon
-t1,Review today's calendar,Today,TODAY,1,open,,,,sf:calendar
-t2,Clear the inbox down to what still needs a reply,Today,TODAY,1,open,,,,sf:envelope.fill
-w1,Finish the most urgent work item,Work,TODAY,1,open,,Replace this with the thing that actually matters today,,sf:chevron.left.forwardslash.chevron.right
-w2,Send any waiting replies,Work,TOMORROW,2,open,,,,sf:envelope.fill
-w3,Weekly review,Work,NEXT_MONDAY,2,open,,Look over the open lists and drop anything stale,,sf:calendar
-p1,Do one personal errand you have been putting off,Personal,IN_3_DAYS,2,open,,,,sf:calendar
-h1,A small home task you can finish today,Home,TODAY,3,open,,,,sf:house.fill
-v1,Waiting on a reply before you can continue,Waiting,,3,open,,Put the person's name or the date you last asked in the note,,sf:hourglass
+id,title,section,due,priority,status,done_at,note,link,icon,options,allow_other
+t1,Review today's calendar,Today,TODAY,1,open,,,,sf:calendar,,
+t2,Clear the inbox down to what still needs a reply,Today,TODAY,1,open,,,,sf:envelope.fill,,
+w1,Finish the most urgent work item,Work,TODAY,1,open,,Replace this with the thing that actually matters today,,sf:chevron.left.forwardslash.chevron.right,,
+w2,Send any waiting replies,Work,TOMORROW,2,open,,,,sf:envelope.fill,,
+w3,Weekly review,Work,NEXT_MONDAY,2,open,,Look over the open lists and drop anything stale,,sf:calendar,,
+p1,Do one personal errand you have been putting off,Personal,IN_3_DAYS,2,open,,,,sf:calendar,,
+h1,A small home task you can finish today,Home,TODAY,3,open,,,,sf:house.fill,,
+v1,Waiting on a reply before you can continue,Waiting,,3,open,,Put the person's name or the date you last asked in the note,,sf:hourglass,,
+q1,Which day should we meet?,Waiting,TODAY,2,open,,Pick one, or type another day,,sf:questionmark.circle,Monday|Tuesday|Wednesday,true

@@ -5,7 +5,7 @@ description: Connect to Nunc Age, a macOS menu-bar TODO and dashboard app that r
 
 # Nunc Age
 
-Nunc Age is a macOS 14+ menu-bar app. Agents write plain files into a shared folder (default `~/NuncAge`). The app never edits those files. When the user ticks or unticks an item, the app appends `ticks.csv` and, if you registered a notify URL, POSTs JSON to you.
+Nunc Age is a macOS 14+ menu-bar app. Agents write plain files into a shared folder (default `~/NuncAge`). The app never edits those files. When the user ticks or unticks an item, the app appends `ticks.csv` and, if you registered a notify URL, POSTs JSON to you. A question item can also carry the user's answer.
 
 The full file contract is in [references/FORMAT.md](references/FORMAT.md). Follow it exactly. This skill is the working recipe.
 
@@ -40,7 +40,7 @@ Rewrite the whole file each time you change it (do not append a partial row). Ke
 `todos/<source>.csv` is RFC 4180 CSV with this header:
 
 ```
-id,title,section,due,priority,status,done_at,note,link,icon
+id,title,section,due,priority,status,done_at,note,link,icon,options,allow_other
 ```
 
 - `id` is required and unique within this file. The last row wins if an id is repeated.
@@ -52,7 +52,9 @@ id,title,section,due,priority,status,done_at,note,link,icon
 - `done_at` is required whenever you set `status` to `done`. Use ISO 8601 UTC, such as `2026-11-10T15:04:05Z`, or `YYYY-MM-DD`.
 - `note` is an optional second line under the title.
 - `link` is an optional `http` or `https` URL.
-- `icon` is optional. Append it at the end. A file without the column still works. Use the same value rules as a section icon. On a row, this icon replaces the section icon. The section icon stays on the section header.
+- `icon` is optional. A file without the column still works. Use the same value rules as a section icon. On a row, this icon replaces the section icon. The section icon stays on the section header.
+- `options` is optional. Pipe-separated choices for a question, such as `Ship today|Wait for review|Cancel`. Append `options` and `allow_other` at the end so older files still parse.
+- `allow_other` is optional and defaults to false. `true`, `yes`, or `1` adds an Other… choice with a free-text field.
 
 Row order is priority order. Put the most important items first inside each section: today, overdue, and urgent at the top of that section. The menu shows the first open rows of each section (the user chooses 3, 5, 10, or all; the default is 5). One agent can own many sections, so the cap is per section, not per file. The dashboard shows every open item, and completed items for as long as the user keeps them (this week by default). When the order should change, rewrite the file. Do not rely on the app to sort by due date or priority.
 
@@ -80,7 +82,13 @@ You do not read `ticks.csv` to discover ticks. That file stays on the Mac and is
 {"action":"done","at":"2026-11-10T15:10:00Z","id":"m2","source":"mail","title":"Archive newsletters"}
 ```
 
-`action` is `done` or `undone`.
+When the tick is an answer to a question item, the body also has `answer` and `answer_type` (`option` or `other`):
+
+```json
+{"action":"done","answer":"Ship today","answer_type":"option","at":"2026-11-10T15:12:00Z","id":"q1","source":"planner","title":"How should we ship 2.5?"}
+```
+
+`action` is `done` or `undone`. Ordinary items omit `answer` and `answer_type`. A question answer is final; the user cannot untick it. Prefer the notify body for the answer; the app also stores it on `ticks.csv`.
 
 ## 5. Make it look good
 
@@ -111,7 +119,7 @@ For an item, pick the icon for the kind of work:
 
 Keep the dashboard note short enough to scan. No walls of text. One summary line, a small table, and an optional image still work. When a few facts belong next to each other, such as usage, a personal bank, an LLC bank, and Stripe, put them in one card row instead of stacking full-width tables.
 
-A line that trims to exactly `::: cards` opens a row. A line that trims to exactly `:::` closes it. With no closing line, the row runs to the end of the file. Each `###` heading inside the row starts a card. The heading is the title. A trailing `{icon}` uses a section icon (`sf:name` or a path such as `icons/bank.png`). An invalid icon is dropped from the title. Text before the first `###` is a card with no title. The body of a card is normal Markdown (paragraphs, lists, tables, quotes, images). Do not nest a row. A `::: cards` line inside a row is plain text, and a fenced code block wins over the row. Use 2–4 cards per row and about 3 table rows per card. Several rows are fine. A column of amounts (`+`, `−`, `-`, or `$`) is right-aligned. The details are in [references/FORMAT.md](references/FORMAT.md).
+A line that trims to exactly `::: cards` opens a row. A line that trims to exactly `:::` closes it. With no closing line, the row runs to the end of the file. Each `###` heading inside the row starts a card. The heading is the title. A trailing `{icon}` uses a section icon (`sf:name` or a path such as `icons/bank.png`). An invalid icon is dropped from the title. Text before the first `###` is a card with no title. The body of a card is normal Markdown (paragraphs, lists, tables, quotes, images). Do not nest a row. A `::: cards` line inside a row is plain text, and a fenced code block wins over the row. Cards sit three to a row, all the same size; a fourth card starts a new row. Use about 3 table rows per card. Several rows are fine. A column of amounts (`+`, `−`, `-`, or `$`) is right-aligned. The details are in [references/FORMAT.md](references/FORMAT.md).
 
 ## 6. Git
 
