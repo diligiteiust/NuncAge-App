@@ -149,14 +149,31 @@ The renderer understands:
 - Headings (`#` through `######`, with a space after the hashes)
 - Paragraphs, including `**bold**` and `*italics*`
 - Bullet lists (`-`, `*`) and numbered lists (`1.` or `1)`)
-- Tables (a header row, a `| --- |` delimiter, then body rows), drawn as a grid
+- Tables (a header row, a `| --- |` delimiter, then body rows), drawn as a grid. A column whose body cells all start with `+`, `−`, `-`, or `$` is right-aligned.
 - Block quotes (`>`), drawn as a callout
 - Images, `![alt](relative/path.png)` or `![alt](<relative/path with spaces.png>)`. The path uses the same rules as an icon and is relative to the data folder. The picture is limited to a modest width. A path that escapes the folder is not loaded.
+- A card row, drawn side by side. A line that trims to exactly `::: cards` opens the row. A line that trims to exactly `:::` closes it. If the closing line is missing, the row runs to the end of the file. Inside the row, each `###` heading starts a card. The heading text is the title. An optional `{icon}` at the end of the title uses the same values as a section icon (`sf:name` or a relative image path in the data folder). An invalid icon is ignored and left off the title. Text before the first `###` is a card with no title. The card body uses the same blocks as the rest of the file: paragraphs, lists, tables, quotes, and images. A row does not nest. A `::: cards` line inside a row is plain text. Fenced code wins: a `::: cards` or `:::` line inside a fenced code block does not open or close a row, and a `###` line inside a fence does not start a card. Use 2–4 cards in a row, and about 3 table rows in a card. Several rows are fine.
 - A line of `---`, `***`, or `___` is a break and is not shown
+
+```
+::: cards
+### Grok Bot usage {sf:gauge.with.dots.needle.33percent}
+**9.6%** of the weekly limit used
+
+Resets **Wed, Nov 18**
+
+### Personal checking {sf:building.columns.fill}
+**$1,234.56** available
+
+| Date | Description | Amount |
+| --- | --- | --- |
+| Nov 10 | Grocery store | −$42.10 |
+:::
+```
 
 Fenced code is shown as plain text. List items are one line each. Inline Markdown (links, bold, italics) is rendered inside those blocks.
 
-Keep the note short: one summary line, a small table of the numbers that matter, and an optional image.
+Keep the note short: one summary line, a small table of the numbers that matter, and an optional image. Put side-by-side facts in a card row instead of stacking full-width tables.
 
 ## What the user sees
 

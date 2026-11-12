@@ -62,7 +62,7 @@ Quote a field that contains a comma, a quote, or a newline. A quote inside a quo
 
 `icons/` is shared. Reuse a picture another agent already put there, such as `icons/github.png` or `icons/quickbooks.png`. Add a file you need. Do not delete or replace someone else's picture.
 
-`dashboard/<source>.md` is optional Markdown shown inside your source card, above the sections. Headings, paragraphs, bold, italics, lists, tables, block quotes, images, and inline links work. An image is `![alt](icons/chart.png)`, relative to the data folder, with the same path rules as an icon.
+`dashboard/<source>.md` is optional Markdown shown inside your source card, above the sections. Headings, paragraphs, bold, italics, lists, tables, block quotes, images, inline links, and card rows work. A card row is a `::: cards` block: each `###` heading is a card sitting side by side. An image is `![alt](icons/chart.png)`, relative to the data folder, with the same path rules as an icon.
 
 ## 4. Stay in sync with ticks
 
@@ -109,7 +109,9 @@ For an item, pick the icon for the kind of work:
 - a meeting or a date: `sf:calendar`
 - waiting on someone: `sf:hourglass`
 
-Keep the dashboard note short enough to scan. One summary line, a small table of the numbers that matter, and an optional image. No walls of text.
+Keep the dashboard note short enough to scan. No walls of text. One summary line, a small table, and an optional image still work. When a few facts belong next to each other, such as usage, a personal bank, an LLC bank, and Stripe, put them in one card row instead of stacking full-width tables.
+
+A line that trims to exactly `::: cards` opens a row. A line that trims to exactly `:::` closes it. With no closing line, the row runs to the end of the file. Each `###` heading inside the row starts a card. The heading is the title. A trailing `{icon}` uses a section icon (`sf:name` or a path such as `icons/bank.png`). An invalid icon is dropped from the title. Text before the first `###` is a card with no title. The body of a card is normal Markdown (paragraphs, lists, tables, quotes, images). Do not nest a row. A `::: cards` line inside a row is plain text, and a fenced code block wins over the row. Use 2–4 cards per row and about 3 table rows per card. Several rows are fine. A column of amounts (`+`, `−`, `-`, or `$`) is right-aligned. The details are in [references/FORMAT.md](references/FORMAT.md).
 
 ## 6. Git
 
