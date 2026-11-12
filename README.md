@@ -2,6 +2,10 @@
 
 Nunc Age is a macOS menu-bar TODO list and dashboard. You tick items in the app; your AI agent (Grok Bot, Cursor, Claude Code, Codex, or another) keeps the lists in a folder of plain CSV and Markdown files.
 
+![The dashboard, with info cards in one row](docs/screenshots/nuncage_dashboard.jpg)
+
+![The menu-bar list](docs/screenshots/nuncage_menu.jpg)
+
 The menu is a regular macOS menu that grows with its contents. Each agent is a header, then each section, with icons when the agent provided them. The menu shows the first few open items of each section, in the order the agent wrote them (5 per section by default; Settings can show 3, 10, or all). When you tick one, the next open item from that section takes its place, and the menu stays open. The dashboard shows every open item in source and section cards, plus items completed this week (or longer, if Settings says so).
 
 This public repository is for [issues](https://github.com/diligiteiust/NuncAge-App/issues), documentation, and the agent skills. The app source is private.
