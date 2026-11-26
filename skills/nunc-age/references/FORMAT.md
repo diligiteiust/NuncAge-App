@@ -2,7 +2,7 @@
 
 Nunc Age reads a folder of plain files. Any agent — a script, a bot, Claude Code, or something else — can feed it. Nothing in this format is specific to one agent.
 
-The app never edits agent files. The only files it writes are `ticks.csv` and a private retry queue under `.nuncage/`.
+The app never edits agent files. The only files it writes are `ticks.csv` and, under `.nuncage/`, a private retry queue and the user's section order (`section-order.json`).
 
 ## Folder
 
@@ -154,7 +154,7 @@ Unknown columns are ignored. A missing file is fine. A file that cannot be read,
 
 ## dashboard/<source>.md
 
-Optional. The dashboard shows this Markdown inside that source's card, above the section cards. Items are grouped by `section` in file order.
+Optional. The dashboard shows this Markdown inside that source's card, above the section cards. Items are grouped by `section` in file order. The order of those sections follows the file until the user reorders them in the app; the saved order then wins.
 
 The renderer understands:
 
@@ -190,10 +190,12 @@ Keep the note short: one summary line, a small table of the numbers that matter,
 
 ## What the user sees
 
-Row order is priority order. Put the most important items first: today, overdue, and urgent at the top of each section. When the order should change, rewrite the file. The app does not sort the menu by due date or priority.
+Row order is the priority order. Put overdue items and items due today first, then items that are blocking an agent or a person, then items with `priority` 1 and items whose `due` date is near, then quick wins, then the rest. Re-sort whenever you rewrite the file. The app does not sort the menu by due date or `priority`.
 
-The menu is a normal menu. It grows with its contents. Each source is a disabled header, with its icon when it has one. Under that, each section is a header, with its icon when it has one. The menu shows the first N open items of each section, in file order. N is 3, 5, 10, or all of them. The default is 5. Ticking an item takes it off that section's list, and the next open row from the same section takes its place. The menu-bar count is the number of open items that are overdue or due today.
+Sections start in the order they first appear in the file. The user can drag them on the dashboard. The app saves that order under `.nuncage/section-order.json` and uses it for the dashboard and the menu. The saved order wins over the file. A section that is not in the saved order yet is added at the end, in the file's order. A section that no longer exists is dropped from the saved order. Rewriting the CSV or Markdown does not reset it.
 
-The dashboard shows every open item from every source, and completed items for the chosen range. Each source is a card. Each section is a card with its icon, its color, and a count of open and done items. Section cards sit three to a row. Due dates and priority stay on the rows. An overdue date is orange. A date of today uses the accent. Items are grouped by `section` in file order. The default range is the current Monday–Sunday week, local time. Settings can keep completed items for the last 7 days, for 30 days, or always.
+The menu is a normal menu. It grows with its contents. Each source is a disabled header, with its icon when it has one. Under that, each section is a header, with its icon when it has one. Sections follow the saved order when the user has one, and otherwise the file. The menu shows the first N open items of each section, in file order. N is 3, 5, 10, or all of them. The default is 5. Ticking an item takes it off that section's list, and the next open row from the same section takes its place. The menu-bar count is the number of open items that are overdue or due today.
+
+The dashboard shows every open item from every source, and completed items for the chosen range. Each source is a card. Each section is a card with its icon, its color, and a count of open and done items. Section cards sit three to a row. Due dates and priority stay on the rows. An overdue date is orange. A date of today uses the accent. Items are grouped by `section` in file order. Section cards follow the saved order when the user has one. The default range is the current Monday–Sunday week, local time. Settings can keep completed items for the last 7 days, for 30 days, or always.
 
 Sources follow `sources.csv`, then any other source name alphabetically.

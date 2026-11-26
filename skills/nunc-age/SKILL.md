@@ -1,6 +1,6 @@
 ---
 name: nunc-age
-description: Connect to Nunc Age, a macOS menu-bar TODO and dashboard app that reads a shared folder of CSV and Markdown files. Use when installing or configuring Nunc Age, writing or updating the user's to-do lists or dashboard, registering a notify URL, or handling a tick (done or undone) from the app.
+description: Connect to Nunc Age, a macOS menu-bar TODO and dashboard app that reads a shared folder of CSV and Markdown files. Use when installing or configuring Nunc Age, writing or updating the user's to-do lists or dashboard, capturing tasks that come up in conversation, registering a notify URL, or handling a tick (done or undone) from the app.
 ---
 
 # Nunc Age
@@ -56,7 +56,7 @@ id,title,section,due,priority,status,done_at,note,link,icon,options,allow_other
 - `options` is optional. Pipe-separated choices for a question, such as `Ship today|Wait for review|Cancel`. Append `options` and `allow_other` at the end so older files still parse.
 - `allow_other` is optional and defaults to false. `true`, `yes`, or `1` adds an Other… choice with a free-text field.
 
-Row order is priority order. Put the most important items first inside each section: today, overdue, and urgent at the top of that section. The menu shows the first open rows of each section (the user chooses 3, 5, 10, or all; the default is 5). One agent can own many sections, so the cap is per section, not per file. The dashboard shows every open item, and completed items for as long as the user keeps them (this week by default). When the order should change, rewrite the file. Do not rely on the app to sort by due date or priority.
+The menu shows the first open rows of each section (the user chooses 3, 5, 10, or all; the default is 5). One agent can own many sections, so the cap is per section, not per file. The dashboard shows every open item, and completed items for as long as the user keeps them (this week by default). When you rewrite the file, put the rows in urgency order (see below). Do not rely on the app to sort by due date or priority. Section order is separate: sections follow the file until the user drags them in the app. That saved order wins over the file, on the dashboard and in the menu. Rewriting this file does not reset it. A new section the saved order does not list yet shows up at the end.
 
 Quote a field that contains a comma, a quote, or a newline. A quote inside a quoted field is `""`.
 
@@ -65,6 +65,14 @@ Quote a field that contains a comma, a quote, or a newline. A quote inside a quo
 `icons/` is shared. Reuse a picture another agent already put there, such as `icons/github.png` or `icons/quickbooks.png`. Add a file you need. Do not delete or replace someone else's picture.
 
 `dashboard/<source>.md` is optional Markdown shown inside your source card, above the sections. Headings, paragraphs, bold, italics, lists, tables, block quotes, images, inline links, and card rows work. A card row is a `::: cards` block: each `###` heading is a card sitting side by side. An image is `![alt](icons/chart.png)`, relative to the data folder, with the same path rules as an icon.
+
+## Capture TODOs automatically
+
+While you talk with the user, add a to-do to your CSV whenever something comes up that someone has to do later, without being asked. That includes things the user says they will do, decisions or approvals waiting on the user, follow-ups you promised, deadlines, and ideas the user wants to keep. Add it right away. Use a short, specific title, put the context in `note`, and set `due` when a date was mentioned. Then tell the user in one line, for example "Added to your Nunc Age list: …", so they can say "remove it". Do not add small talk, questions you answer on the spot, or anything already finished. Look for an existing open item first and update it rather than adding a duplicate. When the work gets done later, mark the item done yourself. If the user says to stop capturing, stop.
+
+## Urgency ordering
+
+Row order is the priority order. Put overdue items and items due today first, then items that are blocking an agent or a person, then items with `priority` 1 and items whose `due` date is near, then quick wins, then the rest. Re-sort whenever you rewrite the file.
 
 ## 4. Stay in sync with ticks
 
